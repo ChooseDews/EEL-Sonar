@@ -14,3 +14,5 @@ The ultrasonic sensors and servo are controlled by an Arduino Uno, which transmi
 ## Radar Output
 
 ![Full Sensor](/docs/gui.png)
+
+This is an example of the radar output. The red dot in the center represents the scanner and red line the current angle being scanned. The sensor has a maximum range of 400-500cm however this GUI implementation limits that view to 200cm max.
