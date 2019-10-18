@@ -9,9 +9,9 @@
 ## To Use
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+git clone https://github.com/ChooseDews/EEL-Sonar
 # Go into the repository
-cd electron-quick-start
+cd ./GUI
 # Install dependencies
 npm install
 # Run the app
