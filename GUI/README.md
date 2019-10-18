@@ -1,4 +1,4 @@
-# electron-quick-start
+# Electron Radar Application
 
 
 ## Requirements
