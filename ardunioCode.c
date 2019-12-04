@@ -1,9 +1,5 @@
-// ---------------------------------------------------------------------------
-// Example NewPing library sketch that does a ping about 20 times per second.
-// ---------------------------------------------------------------------------
 
 #include <NewPing.h>
-
 #include <Servo.h>
 
 #define TRIGGER_PIN  9  // Arduino pin tied to trigger pin on the ultrasonic sensor.
@@ -23,6 +19,34 @@ int pos = 0;    // variable to store the servo position
 void setup() {
   Serial.begin(115200); // Open serial monitor at 115200 baud to see ping results.
   myservo.attach(3);  // attaches the servo on pin 9 to the servo object
+  pinMode(2,OUTPUT)
+  pinMode(12,OUTPUT)
+
+}
+
+
+void update(){
+
+  int sonarOne = sonar.ping_cm();
+  int sonarTwo = sonar.ping_cm();  
+  Serial.print("");
+  Serial.print(sonarOne); // Send ping, get distance in cm and print result (0 = outside set distance range)
+  Serial.print(";");
+  Serial.print(sonarTwo); // Send ping, get distance in cm and print result (0 = outside set distance range)
+  Serial.print(";");
+  Serial.println(pos);
+  
+  if(sonarOne == 0 || sonarOne > 30){
+    digitalWrite(12, LOW);
+  }else{
+    digitalWrite(12, HIGH);
+  }
+  
+  if(sonarTwo == 0 || sonarTwo > 30){
+    digitalWrite(2, LOW);
+  }else{
+    digitalWrite(2, HIGH);
+  }
 
 }
 
@@ -33,26 +57,17 @@ void loop() {
     
     myservo.write(pos);   
   delay(40); // tell servo to go to position in variable 'pos'
-  Serial.print("");
-  Serial.print(sonar.ping_cm()); // Send ping, get distance in cm and print result (0 = outside set distance range)
-  Serial.print(";");
-  Serial.print(sonarTwo.ping_cm()); // Send ping, get distance in cm and print result (0 = outside set distance range)
-  Serial.print(";");
-  Serial.println(pos);
+  update();
     
     }
 
     
   for (pos = 180; pos >= 0; pos -= 1){
-  
+    
+    
   myservo.write(pos);   
-  delay(40); // tell servo to go to position in variable 'pos'
-  Serial.print("");
-  Serial.print(sonar.ping_cm()); // Send ping, get distance in cm and print result (0 = outside set distance range)
-  Serial.print(";");
-  Serial.print(sonarTwo.ping_cm()); // Send ping, get distance in cm and print result (0 = outside set distance range)
-  Serial.print(";");
-  Serial.println(pos);
+  delay(40);
+  update();
   
   
   }
